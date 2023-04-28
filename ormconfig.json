@@ -1,16 +1,17 @@
 {
-    "type": "sqlite",
-    "database": "database.sqlite",
-    "synchronize": true,
-    "logging": false,
-    "entities": [
-      "src/entities/*.ts"
-    ],
-    "migrations": [
-      "migrations/*.ts"
-    ],
-    "cli": {
-      "entitiesDir": "src/entities",
-      "migrationsDir": "migrations"
-    }
+  "type": "sqlite",
+  "database": "database.sqlite",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/entities/*.ts"
+  ],
+  "migrations": [
+    "migrations/*.ts"
+  ],
+  "namingStrategy": "src/config/SnakeNamingStrategy.ts",
+  "cli": {
+    "entitiesDir": "src/entities",
+    "migrationsDir": "migrations"
+  }
 }

@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import ormConfig from '../ormconfig.json';
 import { DataSource } from 'typeorm';
+import { SnakeNamingStrategy } from './config/SnakeNamingStrategy';
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.get('/', (req: Request, res: Response) => {
 const typedOrmConfig = {
   ...ormConfig,
   type: ormConfig.type as any, // Cast the type to any to bypass the type check
+  namingStrategy: new SnakeNamingStrategy(),
 };
 
 const dataSource = new DataSource(typedOrmConfig);
