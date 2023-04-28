@@ -4,13 +4,13 @@
     "synchronize": true,
     "logging": false,
     "entities": [
-      "src/entities/*.js"
+      "src/entities/*.ts"
     ],
     "migrations": [
-      "migrations/*.js"
+      "migrations/*.ts"
     ],
     "cli": {
       "entitiesDir": "src/entities",
       "migrationsDir": "migrations"
     }
-  }
+}
