@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import ormConfig from '../ormconfig.json';
-import { createConnection, DataSourceOptions } from 'typeorm';
+import { DataSource } from 'typeorm';
 
 const app = express();
 
@@ -8,7 +8,15 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
 
-createConnection(ormConfig as DataSourceOptions)
+const typedOrmConfig = {
+  ...ormConfig,
+  type: ormConfig.type as any, // Cast the type to any to bypass the type check
+};
+
+const dataSource = new DataSource(typedOrmConfig);
+
+dataSource
+  .connect()
   .then(() => {
     app.listen(3000, () => {
       console.log('Example app listening on port 3000!');
