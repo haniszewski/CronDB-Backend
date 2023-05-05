@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany} from "typeorm";
+import { Storage } from "./Storage";
 
-@Entity('storages')
-export abstract class Storage extends BaseEntity{
+@Entity('backups')
+export abstract class Backup extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -16,4 +17,7 @@ export abstract class Storage extends BaseEntity{
 
     @Column("varchar", {nullable: false})
     author: string;
+
+    @ManyToMany(() => Storage, (storage) => storage.backups, {nullable: false})
+    storages: Storage[];
 }
