@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMany } from "typeorm";
 import { Type } from "./Type";
 
 @Entity('storages')
@@ -12,6 +12,6 @@ export abstract class Storage extends BaseEntity{
     @Column("varchar", {nullable: false})
     accessData: string;
 
-    @ManyToOne(() => Type, (type) => type.storages)
+    @ManyToOne(() => Type, (type) => type.storages, {nullable: false})
     type: Type
 }
