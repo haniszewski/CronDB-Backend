@@ -2,9 +2,12 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany} from "t
 import { Storage } from "./Storage";
 
 @Entity('backups')
-export abstract class Backup extends BaseEntity{
+export class Backup extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column("varchar", {nullable: false})
+    name: string;
 
     @Column("varchar", {nullable: false})
     source: string;
