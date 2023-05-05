@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, JoinTable } from "typeorm";
+import { Database } from "./Database";
 
 @Entity('users')
 export class User extends BaseEntity{
@@ -19,4 +20,8 @@ export class User extends BaseEntity{
 
     @Column("varchar", {nullable: false})
     accountActive: boolean;
+
+    @ManyToMany(() => Database, (database) => database.users)
+    @JoinTable()
+    databases: Database[];
 }
