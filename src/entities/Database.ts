@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm";
+import { Backup } from "./Backup"
 
 @Entity('databases')
 export abstract class Database extends BaseEntity{
@@ -16,4 +17,7 @@ export abstract class Database extends BaseEntity{
 
     @Column("varchar", {nullable: false})
     version: string;
+
+    @OneToMany(() => Backup, (backup) => backup.database)
+    backups: Backup[];
 }

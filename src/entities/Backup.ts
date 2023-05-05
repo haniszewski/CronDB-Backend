@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, ManyToOne} from "typeorm";
 import { Storage } from "./Storage";
+import { Database } from "./Database";
 
 @Entity('backups')
 export class Backup extends BaseEntity{
@@ -23,4 +24,7 @@ export class Backup extends BaseEntity{
 
     @ManyToMany(() => Storage, (storage) => storage.backups, {nullable: false})
     storages: Storage[];
+
+    @ManyToOne(() => Database, (database) => database.backups)
+    database: Database;
 }
