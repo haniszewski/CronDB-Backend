@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, ManyToOne} from "typeorm";
 import { Storage } from "./Storage";
 import { Database } from "./Database";
+import { User } from "./User";
 
 @Entity('backups')
 export class Backup extends BaseEntity{
@@ -19,8 +20,8 @@ export class Backup extends BaseEntity{
     @Column("int", {nullable: false})
     size: number;
 
-    @Column("varchar", {nullable: false})
-    author: string;
+    @ManyToOne(() => User, (author) => author.backups)
+    author: User;
 
     @ManyToMany(() => Storage, (storage) => storage.backups, {nullable: false})
     storages: Storage[];
