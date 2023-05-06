@@ -18,9 +18,6 @@ export abstract class Database extends BaseEntity{
     user: string;
 
     @Column("varchar", {nullable: false})
-    version: string;
-
-    @Column("varchar", {nullable: false})
     dialect: string;
 
     @OneToMany(() => Backup, (backup) => backup.database)
@@ -29,6 +26,7 @@ export abstract class Database extends BaseEntity{
     @OneToMany(() => Schedule, (schedule) => schedule.database)
     schedules: Schedule[];
 
+    // Users, who have permission to database
     @ManyToMany(() => User, (user) => user.databases)
     users: User[];
 }
