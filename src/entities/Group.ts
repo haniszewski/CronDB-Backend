@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, JoinTable } from "typeorm";
 import { User } from "./User";
 
 @Entity('groups')
@@ -12,6 +12,7 @@ export class Group extends BaseEntity{
     @Column("varchar", {nullable: false})
     permissions: string;
 
-    @OneToMany(() => User, (user) => user.group)
+    @ManyToMany(() => User, (user) => user.groups)
+    @JoinTable()
     users: User[];
 }

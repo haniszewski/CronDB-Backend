@@ -30,6 +30,6 @@ export class User extends BaseEntity{
     @JoinTable()
     databases: Database[];
 
-    @ManyToOne(() => Group, (group) => group.users)
-    group: Group;
+    @ManyToMany(() => Group, (group) => group.users)
+    groups: Group[];
 }
