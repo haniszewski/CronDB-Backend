@@ -1,7 +1,7 @@
 import { Entity } from "typeorm";
 import { Storage } from "./Storage";
 
-@Entity('google_storage')
-export class GoogleStorage extends Storage{
+@Entity("storages_ftp")
+export class StorageFTP extends Storage{
 
 }

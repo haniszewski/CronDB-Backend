@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
 import { Storage } from "./Storage";
 
-@Entity('types')
+@Entity("types")
 export class Type extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;

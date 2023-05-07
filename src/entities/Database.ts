@@ -3,7 +3,7 @@ import { Backup } from "./Backup"
 import { Schedule } from "./Schedule";
 import { User } from "./User";
 
-@Entity('databases')
+@Entity("databases")
 export abstract class Database extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;

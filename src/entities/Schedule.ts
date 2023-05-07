@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne} from "typeorm";
 import { Database } from "./Database";
 
-@Entity('schedules')
+@Entity("schedules")
 export class Schedule extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;

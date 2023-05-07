@@ -3,7 +3,7 @@ import { Database } from "./Database";
 import { Group } from "./Group";
 import { Backup } from "./Backup";
 
-@Entity('users')
+@Entity("users")
 export class User extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;

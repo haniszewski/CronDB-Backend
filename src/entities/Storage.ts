@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, ManyToMa
 import { Type } from "./Type";
 import { Backup } from "./Backup";
 
-@Entity('storages')
+@Entity("storages")
 export abstract class Storage extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
