@@ -13,7 +13,7 @@ export abstract class Storage extends BaseEntity{
     @Column("varchar", {nullable: false})
     accessData: string;
 
-    @ManyToOne(() => Type, (type) => type.storages, {nullable: false})
+    @ManyToOne(() => Type, (type) => type, {nullable: false})
     type: Type;
 
     @ManyToMany(() => Backup, (backup) => backup.storages)

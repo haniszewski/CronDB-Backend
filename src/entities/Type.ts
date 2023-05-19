@@ -9,6 +9,6 @@ export class Type extends BaseEntity{
     @Column("varchar", {nullable: false})
     name: string;
 
-    @OneToMany(() => Storage, (storage) => storage.type)
-    storages: Storage[];
+    // @OneToMany(() => Storage, (storage) => storage.type)
+    // storages: Storage[];
 }

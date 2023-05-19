@@ -14,7 +14,7 @@ export class Backup extends BaseEntity{
     @Column("varchar", {nullable: false})
     source: string;
 
-    @Column("timestamptz", {nullable: false})
+    @Column("text", {nullable: false})
     creationDate: Date;
 
     @Column("int", {nullable: false})

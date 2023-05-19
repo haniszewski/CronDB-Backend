@@ -1,8 +1,12 @@
-import { ChildEntity, Column } from "typeorm";
+import { ChildEntity, Column, OneToOne, JoinColumn, Entity } from "typeorm";
 import { Database } from "./Database";
 
-@ChildEntity("JOINED")
+@Entity("databases_postgres")
 export class DatabasePostgres extends Database{
+    @OneToOne(() => Database)
+    @JoinColumn()
+    database: Database;
+
     @Column("real", {nullable: false})
     version: number;
 }
