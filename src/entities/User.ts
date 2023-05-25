@@ -14,10 +14,10 @@ export class User extends BaseEntity{
     @Column("varchar", {nullable: false})
     password: string;
 
-    @Column("varchar", {nullable: false})
+    @Column("varchar", {nullable: true})
     email: string;
 
-    @Column("varchar", {nullable: false})
+    @Column("varchar", {nullable: true})
     phoneNumber: string;
 
     @Column("varchar", {nullable: false})

@@ -7,10 +7,13 @@ const jwtSecret = 'changeme_import_env';
 
 export class AuthController {
   static async login(req: Request, res: Response): Promise<Response> {
-    const { email, password } = req.body;
+    console.log("Logging in")
+    console.log(req)
+    // console.log(res)
+    const { login, password } = req.body;
 
     try {
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { login } });
 
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
