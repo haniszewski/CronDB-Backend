@@ -16,7 +16,7 @@ app.get('/', (req: Request, res: Response) => {
 
 
 async function startServer() {
-  const { UserRepository } = await connectAndGetRepositories();
+  await connectAndGetRepositories();
   await createFirstUser();
   app.listen(3000, () => {
     console.log('Example app listening on port 3000!');

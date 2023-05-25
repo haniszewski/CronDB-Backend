@@ -15,7 +15,7 @@ let UserRepository: Repository<User> | undefined = undefined;
 
 export async function connectAndGetRepositories() {
   if (UserRepository === undefined) {
-    await dataSource.connect();
+    await dataSource.initialize();
     UserRepository = dataSource.getRepository(User);
   }
 
