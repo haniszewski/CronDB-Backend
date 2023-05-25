@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
 import { User } from '../entities/User';
+import { connectAndGetRepositories } from '../config/dataSource';
+
+
 
 export class UserController {
     // Create a new user
@@ -24,11 +27,19 @@ export class UserController {
     // Get all users
     static async getUsers(req: Request, res: Response): Promise<Response> {
         try {
-            const users = await User.find();
+            const { UserRepository } = await connectAndGetRepositories();
+            const users = await UserRepository.find({
+                select: ['id', 'login', 'email', 'accountActive']
+            });
             return res.status(200).json(users);
         } catch (error) {
-            return res.status(500).json({ message: 'Error fetching users', error });
+            if (error instanceof Error) { // check if error is an instance of Error
+                return res.status(500).json({ message: 'Error fetching users', errors: error.message });
+            } else {
+                return res.status(500).json({ message: 'Error fetching users', errors: error });
+            }
         }
+
     }
 
     // Get user by ID
