@@ -11,3 +11,6 @@
 
 # SQLite
 /database.sqlite
+
+# Compiled
+/dist

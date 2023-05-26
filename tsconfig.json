@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "CommonJS",
     "outDir": "./dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -9,7 +9,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true
+
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "lib": ["ES2020", "DOM", "DOM.Iterable", "ESNext.AsyncIterable", "Node"]
 }
