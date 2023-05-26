@@ -1,5 +1,5 @@
 import { DataSource, Repository } from "typeorm";
-import ormConfig from "../../ormconfig.json";
+import ormConfig from "../ormconfig";
 import { User } from "../entities/User";
 import { SnakeNamingStrategy } from "./SnakeNamingStrategy";
 
@@ -9,14 +9,14 @@ const typedOrmConfig = {
   namingStrategy: new SnakeNamingStrategy(),
 };
 
-export const dataSource = new DataSource(typedOrmConfig);
+export const myDataSource = new DataSource(typedOrmConfig);
 
 let UserRepository: Repository<User> | undefined = undefined;
 
 export async function connectAndGetRepositories() {
   if (UserRepository === undefined) {
-    await dataSource.initialize();
-    UserRepository = dataSource.getRepository(User);
+    await myDataSource.initialize();
+    UserRepository = myDataSource.getRepository(User);
   }
 
   return {

@@ -4,6 +4,9 @@ import * as bodyParser from 'body-parser';
 import { createFirstUser } from './utils/createFirstUser';
 import { connectAndGetRepositories } from './config/dataSource';
 
+require('dotenv').config();
+
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -13,6 +16,11 @@ app.use('/users', routers.userRouter);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
+
+if (process.env.NODE_ENV === "development") {
+  console.log('Dev');
+}
+
 
 
 async function startServer() {
