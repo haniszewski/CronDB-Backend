@@ -11,7 +11,7 @@ export class DatabasePostgresController {
             const { dbHost, dbPort, dbLogin, dbPass, dbName } = req.body?.dbAuth
             // Send info to python backend to connect to database
             const dbResponse = true;
-            if (dbResponse) {
+            if (!dbResponse) {
                 return res.status(200).json({ message: "Connected!" })
             } else {
                 return res.status(400).json({ message: "Connection failed!" })
