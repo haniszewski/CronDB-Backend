@@ -7,6 +7,9 @@ export class DatabasePostgres extends Database{
     @JoinColumn()
     database: Database;
 
+    @Column("varchar", {nullable: false})
+    password: string;
+
     @Column("real", {nullable: false})
     version: number;
 }

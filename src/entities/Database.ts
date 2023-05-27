@@ -14,6 +14,9 @@ export abstract class Database extends BaseEntity{
     @Column("varchar", {nullable: false})
     host: string;
 
+    @Column("smallint", {nullable: false})
+    port: number;
+
     @Column("varchar", {nullable: false})
     user: string;
 
