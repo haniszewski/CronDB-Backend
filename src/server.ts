@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 app.use('/auth', routers.authRouter);
 app.use('/users', routers.userRouter);
+app.use('/databases',routers.databasesRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
