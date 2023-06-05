@@ -3,7 +3,7 @@ import { ChildEntity, Entity, Column, OneToOne, JoinColumn } from "typeorm";
 import { Storage } from "./Storage";
 
 @Entity("storages_ftp")
-export class StorageFTP extends Storage{
+export class StorageFtp extends Storage{
     @OneToOne(() => Storage)
     @JoinColumn()
     storage: Storage;

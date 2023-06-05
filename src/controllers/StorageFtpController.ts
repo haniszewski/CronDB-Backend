@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { connectAndGetRepositories } from "../config/dataSource";
-import { StorageFTP } from "../entities/StorageFTP";
+import { StorageFtp } from "../entities/StorageFtp";
 
 export class StorageFtpController {
     static async testConnection(req: Request, res: Response): Promise<Response> {
