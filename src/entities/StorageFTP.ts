@@ -11,4 +11,10 @@ export class StorageFTP extends Storage{
     @Column("varchar", {nullable: false})
     ipAddr: string;
 
+    @Column("smallint", {nullable: false})
+    port: number;
+
+    @Column("boolean", {nullable: false})
+    passive: boolean;
+
 }
