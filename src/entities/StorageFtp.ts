@@ -14,6 +14,12 @@ export class StorageFtp extends Storage{
     @Column("smallint", {nullable: false})
     port: number;
 
+    @Column("varchar", {nullable: false})
+    ftpUser: string;
+
+    @Column("varchar", {nullable: false})
+    ftpPass: string;
+
     @Column("boolean", {nullable: false})
     passive: boolean;
 
