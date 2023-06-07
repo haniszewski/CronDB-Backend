@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne} from "typeorm";
 import { Database } from "./Database";
+import { BackupsStorages } from "./BackupsStorage";
 
 @Entity("schedules")
 export class Schedule extends BaseEntity{
@@ -9,8 +10,8 @@ export class Schedule extends BaseEntity{
     @Column("varchar", {nullable: false})
     name: string;
 
-    @Column("varchar", {nullable: false})
-    source: string;
+    // @Column("varchar", {nullable: false})
+    // source: string;
 
     @Column("varchar", {nullable: false})
     cron: string;
@@ -18,9 +19,12 @@ export class Schedule extends BaseEntity{
     @Column("int", {nullable: false})
     numberOfCopy: number;
 
-    @Column("varchar", {nullable: false})
-    destination: string;
+    // @Column("varchar", {nullable: false})
+    // destination: string;
 
     @ManyToOne(() => Database, (database) => database.schedules)
     database: Database;
+
+    @ManyToOne(() => BackupsStorages)
+    storage: BackupsStorages[];
 }

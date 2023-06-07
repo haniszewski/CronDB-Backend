@@ -34,7 +34,7 @@ export class StorageFtpController {
 
             await StorageFtpRepository.save(ftpStorage);
 
-            return res.status(200).json({ message: 'Added new Storage' })
+            return res.status(201).json({ message: 'Added new Storage' })
 
         } catch (error) {
             console.log(error)
