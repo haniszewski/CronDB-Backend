@@ -22,6 +22,7 @@ app.use('/auth', routers.authRouter);
 app.use('/users', routers.userRouter);
 app.use('/databases', routers.databasesRouter);
 app.use('/storages',routers.storagesRouter);
+app.use('/schedules',routers.scheduleRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
