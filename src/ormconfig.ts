@@ -1,21 +1,4 @@
-// export default {
-//     "type": "sqlite",
-//     "database": "database.sqlite",
-//     "synchronize": true,
-//     "logging": false,
-//     "entities": [
-//         "src/entities/*.ts"
-//     ],
-//     "migrations": [
-//         "migrations/*.ts"
-//     ],
-//     "namingStrategy": "src/config/SnakeNamingStrategy.ts",
-//     "cli": {
-//         "entitiesDir": "src/entities",
-//         "migrationsDir": "migrations"
-//     }
-// };
-
+require('dotenv').config();
 import { SnakeNamingStrategy } from "./config/SnakeNamingStrategy";
 
 export default {
