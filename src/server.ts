@@ -21,6 +21,7 @@ app.use(cors(corsOptions));
 app.use('/auth', routers.authRouter);
 app.use('/users', routers.userRouter);
 app.use('/databases', routers.databasesRouter);
+app.use('/storages',routers.storagesRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
