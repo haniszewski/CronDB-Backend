@@ -5,15 +5,15 @@ import { Schedule } from '../entities/Schedule';
 export class ScheduleController {
     static async add(req: Request, res: Response): Promise<Response> {
         try {
-            const { jname, /*jsource,*/ jcron, jnumberOfCopy, /*jdestination,*/ jdatabase, jstorage } = req.body
+            const { name, /*source,*/ cron, numberOfCopy, /*destination,*/ database, storage } = req.body
             const nschedule = new Schedule();
-            nschedule.name = jname;
-            // nschedule.source = jsource;
-            nschedule.cron = jcron;
-            nschedule.numberOfCopy = jnumberOfCopy;
-            // nschedule.destination = jdestination;
-            nschedule.database = jdatabase;
-            nschedule.storage = jstorage;
+            nschedule.name = name;
+            // nschedule.source = source;
+            nschedule.cron = cron;
+            nschedule.numberOfCopy = numberOfCopy;
+            // nschedule.destination = destination;
+            nschedule.database = database;
+            nschedule.storage = storage;
 
             const { ScheduleRepository } = await connectAndGetRepositories();
             await ScheduleRepository.save(nschedule);
@@ -22,8 +22,8 @@ export class ScheduleController {
 
         } catch (error) {
             console.log(`Error: ${error}`)
+            return res.status(500).json({ message: 'Internal server error' });
         }
-        return res.status(500).json({ message: 'Internal server error' });
     }
 
     static async delete(req: Request, res: Response): Promise<Response> {
@@ -33,13 +33,17 @@ export class ScheduleController {
 
             const { ScheduleRepository } = await connectAndGetRepositories();
 
-            await ScheduleRepository.delete({ id: idNumber });
+            const delResp = await ScheduleRepository.delete({ id: idNumber });
 
-            res.status(201).json({ message: 'Added new Schedule' })
+            if (delResp.affected > 0) {
+                res.status(200).json({ message: 'Deleted schedule' })
+            } else {
+                res.status(400).json({ message: 'No schedule to delete' })
+            }
 
         } catch (error) {
-            console.log(`Error: ${error}`)
+            console.log(`Error: ${error}`);
+            return res.status(500).json({ message: 'Internal server error' });
         }
-        return res.status(500).json({ message: 'Internal server error' });
     }
 }

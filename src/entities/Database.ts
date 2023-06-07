@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, ManyToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, ManyToMany, TableInheritance} from "typeorm";
 import { Backup } from "./Backup"
 import { Schedule } from "./Schedule";
 import { User } from "./User";
 
 @Entity("databases")
+@TableInheritance({ column: { type: "varchar", name: "type" } })
 export abstract class Database extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
