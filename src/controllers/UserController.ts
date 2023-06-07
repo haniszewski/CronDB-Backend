@@ -47,7 +47,10 @@ export class UserController {
         const { id } = req.params;
 
         try {
-            const user = await User.findOne({ where: { id: parseInt(id) } });
+            const user = await User.findOne({
+                select: ['id', 'login', 'email', 'accountActive'],
+                where: { id: parseInt(id) }
+            });
 
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
