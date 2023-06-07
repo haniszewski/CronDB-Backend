@@ -25,4 +25,21 @@ export class ScheduleController {
         }
         return res.status(500).json({ message: 'Internal server error' });
     }
+
+    static async delete(req: Request, res: Response): Promise<Response> {
+        try {
+            const { id } = req.params;
+            const idNumber = Number(id);
+
+            const { ScheduleRepository } = await connectAndGetRepositories();
+
+            await ScheduleRepository.delete({ id: idNumber });
+
+            res.status(201).json({ message: 'Added new Schedule' })
+
+        } catch (error) {
+            console.log(`Error: ${error}`)
+        }
+        return res.status(500).json({ message: 'Internal server error' });
+    }
 }
