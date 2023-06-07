@@ -46,4 +46,27 @@ export class ScheduleController {
             return res.status(500).json({ message: 'Internal server error' });
         }
     }
+
+    static async getByDatabaseId(req: Request, res: Response): Promise<Response> {
+        try {
+            const { id } = req.params;
+            const idNumber = Number(id);
+
+            const { ScheduleRepository } = await connectAndGetRepositories();
+
+            const resp = await ScheduleRepository.find({
+                where: {
+                    database: {
+                        id: idNumber
+                    }
+                }
+            });
+            res.status(400).json(resp)
+            
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    }
 }
