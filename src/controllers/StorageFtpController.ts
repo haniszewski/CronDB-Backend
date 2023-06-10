@@ -5,7 +5,7 @@ import { StorageFtp } from "../entities/StorageFtp";
 export class StorageFtpController {
     static async testConnection(req: Request, res: Response): Promise<Response> {
         try {
-            const { ftpHost, ftpPort, ftpLogin, ftpPass, passive} = req.body?.ftpAuth;
+            const { ftpHost, ftpPort, ftpLogin, ftpPass, passive } = req.body?.ftpAuth;
             // Send info to python backend to connect to database
             const ftpResp = true;
             if (!ftpResp) {
@@ -21,7 +21,7 @@ export class StorageFtpController {
 
     static async addStorage(req: Request, res: Response): Promise<Response> {
         try {
-            const { ftpHost, ftpPort, ftpLogin, ftpPass, passive} = req.body?.ftpAuth;
+            const { ftpHost, ftpPort, ftpLogin, ftpPass, passive } = req.body?.ftpAuth;
 
             const { StorageFtpRepository } = await connectAndGetRepositories();
 
@@ -48,6 +48,32 @@ export class StorageFtpController {
             const { StorageFtpRepository } = await connectAndGetRepositories();
             const storagesFtp = await StorageFtpRepository.find();
             return res.status(200).json(storagesFtp);
+        } catch (error) {
+
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+
+    static async deleteStorage(req: Request, res: Response): Promise<Response> {
+        try {
+            const { id } = req.params
+            const numId = Number(id)
+            const { StorageFtpRepository } = await connectAndGetRepositories();
+            const deletedFtp = await StorageFtpRepository.delete({
+                id: numId
+            })
+            if (deletedFtp.affected > 0) {
+                return res.status(200).json(
+                    { message: "Deleted" }
+                )
+            } else {
+                return res.status(400).json(
+                    {
+                        errors: ["Not found"]
+                    }
+                )
+            }
         } catch (error) {
 
             return res.status(500).json({ message: 'Internal server error' });
