@@ -24,6 +24,7 @@ export class DatabasePostgresController {
 
     static async addDatabase(req: Request, res: Response): Promise<Response> {
         try {
+            console.log('Adding database');
             const { dbHost, dbPort, dbLogin, dbPass, dbName, pgVersion } = req.body?.dbAuth
             const dbPostgres = new DatabasePostgres()
             dbPostgres.host = dbHost
@@ -50,7 +51,7 @@ export class DatabasePostgresController {
         try {
             const { DatabasePostgresRepository } = await connectAndGetRepositories();
             const pgDatabases = await DatabasePostgresRepository.find({
-                select: ['id','host','port','dbName','dialect']
+                select: ['id','host','port','dbName','dialect','user','password']
             });
             return res.status(200).json(pgDatabases);
         } catch (error) {
